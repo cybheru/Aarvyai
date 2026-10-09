@@ -1,4 +1,4 @@
-# Aarvyai
+# Aarvyai -v0.1
 
 Aarvyai is a simple Python voice-assistant prototype that explores speech recognition and spoken responses.
 

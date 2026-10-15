@@ -1,27 +1,29 @@
-# Aarvyai -v0.1
+# Aarvyai
 
-Aarvyai is a simple Python voice-assistant prototype that explores speech recognition and spoken responses.
+Aarvyai is a Python voice-assistant prototype for hands-free everyday tasks.
 
 ## Features
 
-- Listens for spoken commands with SpeechRecognition.
-- Replies using text-to-speech with pyttsx3.
-- Handles greetings and requests for the current time or date.
-- Includes shortcuts intended to open Google, YouTube, and WhatsApp.
-- Recognizes stop, exit, and quit as exit commands.
+- Recognizes voice commands with SpeechRecognition and responds with pyttsx3 text-to-speech.
+- Gives the current time and date and responds to greetings.
+- Searches Google and YouTube from spoken queries.
+- Opens Google, YouTube, Gmail, GitHub, and ChatGPT.
+- Launches Calculator, Notepad, Chrome, and Visual Studio Code on Windows.
+- Exits on commands such as “stop”, “exit”, “quit”, or “goodbye”.
 
 ## Requirements
 
-- Python 3
+- Python 3.9 or newer
 - A working microphone and speakers
 - An internet connection for Google speech recognition
+- Windows for the built-in desktop application shortcuts
 
 ## Setup
 
-Install the Python packages used by the project:
+Install the dependencies listed in requirements.txt:
 
 ```bash
-python -m pip install SpeechRecognition pyttsx3 click PyAudio
+python -m pip install -r requirements.txt
 ```
 
 ## Run
@@ -30,13 +32,15 @@ python -m pip install SpeechRecognition pyttsx3 click PyAudio
 python main.py
 ```
 
-## Example commands
+## Example voice commands
 
-- "What time is it?"
-- "What is today's date?"
-- "Open Google"
-- "Open YouTube"
-- "Open WhatsApp"
-- "Stop"
+- “What time is it?”
+- “What is today's date?”
+- “Search Google for Python”
+- “Search YouTube for music”
+- “Open Gmail”
+- “Open calculator”
+- “Open VS Code”
+- “Stop”
 
-This is an early-stage project; microphone and speech-engine setup can vary by system.
+The project is an early-stage prototype. Microphone and speech-engine setup can vary by system.

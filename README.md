@@ -1,4 +1,4 @@
-# Aarvyai
+# Aarvyai V2.0
 
 Aarvyai is a Python voice-assistant prototype for hands-free everyday tasks.
 

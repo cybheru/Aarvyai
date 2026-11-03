@@ -45,7 +45,7 @@ recognizer.pause_threshold = 0.8
 # ---------- VOICE OUTPUT ----------
 
 def speak(text):
-    print(f"\nGuru AI: {text}")
+    print(f"\nAarvya AI: {text}")
 
     try:
         engine.say(text)
@@ -515,10 +515,10 @@ def handle_command(command):
 
 def main():
     print("=" * 45)
-    print("GURU AI - V4 PC ASSISTANT")
+    print("Aarvya AI - V4 PC ASSISTANT")
     print("=" * 45)
 
-    speak("Hello! Guru AI version 4 is ready.")
+    speak("Hello! Aarvya AI version 4 is ready.")
 
     while True:
         command = listen()

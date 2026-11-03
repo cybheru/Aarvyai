@@ -531,7 +531,7 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\nGuru AI stopped by keyboard.")
+        print("\nAarvya AI stopped by keyboard.")
     finally:
         try:
             engine.stop()

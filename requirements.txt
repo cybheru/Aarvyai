@@ -1,3 +1,5 @@
 SpeechRecognition
 PyAudio
 pyttsx3
+psutil
+

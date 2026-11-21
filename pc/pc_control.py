@@ -98,8 +98,7 @@ def search_file(filename: str, speak) -> None:
         print(f"{index}. {item}")
     exact = [item for item in matches if item.name.casefold() == filename.casefold()]
     if len(exact) == 1:
-        speak("I found one exact match. Say yes if you want to open it.")
-        # Do not start a second listener here; the normal loop owns microphone input.
+        speak("I found one exact match. Its path is shown in the terminal; no file was opened.")
         print(f"Exact match: {exact[0]}")
     else:
         speak(f"I found {len(matches)} matching files. Check the paths in the terminal.")

@@ -1,46 +1,39 @@
-# Aarvyai V4 — Guru AI PC Voice Assistant
+# Aarvyai V5 — Modular Windows Voice Assistant
 
-Aarvyai V4 is a beginner-friendly Windows voice assistant. It listens for spoken commands, speaks responses, opens supported applications and common folders, searches common user folders for files, and reports CPU, RAM, and battery information.
+Aarvyai is a Python voice assistant for Windows. Version 5 organizes voice input, command handling, Windows controls, and web shortcuts into separate modules.
 
 ## Features
 
-- Voice input with SpeechRecognition and Google speech recognition (internet required).
-- Spoken output with pyttsx3.
-- Greetings, current time, and date.
-- Google and YouTube web searches.
-- Opens Google, YouTube, Gmail, GitHub, and ChatGPT.
-- Opens Calculator, Notepad, Paint, WordPad, Chrome, and Visual Studio Code when installed.
-- Opens Desktop, Downloads, Documents, Pictures, Music, and Videos folders.
-- Searches Desktop, Downloads, and Documents for matching file names. If there is one exact match, Aarvyai asks before opening it.
-- Reports CPU and RAM use and battery status when the device exposes that information.
-- Stop, exit, quit, and goodbye commands stop Aarvyai; they do not shut down Windows.
+- Speech input through SpeechRecognition and Google speech recognition (internet required).
+- Spoken responses through pyttsx3.
+- Greetings, current time and date.
+- Google, YouTube, GitHub and Wikipedia searches.
+- Opens common websites, including Gmail, GitHub, ChatGPT and Stack Overflow.
+- Opens Calculator, Notepad, Paint, Chrome and Visual Studio Code when installed.
+- Opens common user folders.
+- Searches Desktop, Downloads and Documents for matching filenames (up to 10 results).
+- Reports CPU, RAM and battery information when available.
+- Stop, exit, quit and goodbye commands stop Aarvyai; they do not shut down Windows.
 
 ## Requirements
 
 - Windows 10 or Windows 11.
 - Python 3.9 or newer.
-- A working microphone and speakers.
-- Internet access for voice recognition and web searches.
+- Microphone and speakers.
+- Internet access for speech recognition and web searches.
 
-## Setup (Windows)
+## Setup
 
-1. Install Python 3.9 or newer and enable **Add Python to PATH** in the installer.
-2. Open PowerShell in this project folder.
-3. (Recommended) Create and activate a virtual environment:
+Open PowerShell in the project directory:
 
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
 
-4. Install the requirements:
-
-   ```powershell
-   python -m pip install --upgrade pip
-   python -m pip install -r requirements.txt
-   ```
-
-   If PyAudio installation fails, use a Python version and wheel supported by your Windows architecture, then retry `python -m pip install PyAudio`. Microphone access must be enabled in Windows privacy settings.
+If PyAudio installation fails, use a supported Python version and Windows wheel for your architecture. Check Windows microphone privacy settings if the microphone cannot be opened.
 
 ## Run
 
@@ -48,47 +41,45 @@ Aarvyai V4 is a beginner-friendly Windows voice assistant. It listens for spoken
 python main.py
 ```
 
-Press `Ctrl+C` or say **stop** to exit.
+Press Ctrl+C or say **stop** to exit.
 
-## Example voice commands
+## Example commands
 
-| Say | What Aarvyai does |
+| Say | Result |
 |---|---|
-| “Hello Guru” | Greets you |
+| “Hello Aarvyai” | Greets you |
 | “What time is it?” | Speaks the current time |
 | “What is today's date?” | Speaks the date |
-| “Search Google for Python” | Opens Google search results |
-| “Search YouTube for music” | Opens YouTube search results |
+| “Search Google for Python” | Opens Google results |
+| “Search YouTube for music” | Opens YouTube results |
+| “Search GitHub for speech recognition” | Opens GitHub results |
+| “Search Wikipedia for India” | Opens Wikipedia results |
 | “Open Gmail” | Opens Gmail |
 | “Open calculator” | Opens Calculator |
 | “Open VS Code” | Opens Visual Studio Code |
 | “Open Downloads” | Opens your Downloads folder |
-| “Search file for budget” | Searches Desktop, Downloads, and Documents |
-| “Show CPU” / “Show RAM” / “Show battery” | Reports system information |
-| “Show system information” | Reports CPU, RAM, and battery information |
+| “Search file for budget” | Lists matching files in the terminal |
+| “Show CPU”, “Show RAM”, “Show battery” | Reports system information |
 | “Stop” | Exits Aarvyai |
 
-## Troubleshooting
-
-- **Microphone error:** Check that Windows allows desktop apps to use the microphone and that the correct input device is connected.
-- **Speech recognition unavailable:** Check the internet connection; Google recognition is an online service.
-- **No speech heard:** Check the Windows output device and pyttsx3 voice settings.
-- **Application not found:** Install the app. Chrome and VS Code are detected from common Windows install locations or PATH.
-- **Battery unavailable:** Desktop PCs and some devices do not provide battery sensor data; this is expected.
-- **No matching file:** Search is limited to Desktop, Downloads, and Documents to avoid scanning the whole computer.
-
-## Project files
+## Project structure
 
 ```text
 Aarvyai/
-├── .gitignore
-├── CHANGELOG.md
-├── README.md
-├── VERSION
+├── core/
+│   └── assistant.py
+├── pc/
+│   └── pc_control.py
+├── voice/
+│   └── voice.py
+├── web/
+│   └── web_control.py
 ├── main.py
 └── requirements.txt
 ```
 
-## Version
+## Notes
 
-Current version: **4.0.0**. See [VERSION](VERSION) and [CHANGELOG.md](CHANGELOG.md).
+- Google speech recognition sends microphone audio to Google's recognition service.
+- Searching files is limited to Desktop, Downloads and Documents. Matching file paths are printed in the terminal; files are not opened automatically.
+- Microphone input and speech synthesis depend on local device and Windows configuration.

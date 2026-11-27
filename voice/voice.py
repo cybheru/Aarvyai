@@ -1,48 +1,75 @@
-"""Speech recognition and speech synthesis."""
+
 import speech_recognition as sr
 import pyttsx3
 
 engine = pyttsx3.init()
 engine.setProperty("rate", 170)
 engine.setProperty("volume", 1.0)
+
 recognizer = sr.Recognizer()
-recognizer.pause_threshold = 0.8
 
 
-def speak(text: str) -> None:
-    print(f"\nAarvyai: {text}")
-    try:
-        engine.say(text)
-        engine.runAndWait()
-    except Exception as error:
-        print(f"Speech output error: {error}")
+def speak(text):
+    print("Guru AI:", text)
+    engine.say(text)
+    engine.runAndWait()
 
 
-def listen() -> str:
+def listen():
     try:
         with sr.Microphone() as source:
             print("\nListening...")
-            recognizer.adjust_for_ambient_noise(source, duration=0.5)
-            audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
+
+            recognizer.adjust_for_ambient_noise(
+                source,
+                duration=0.5
+            )
+
+            audio = recognizer.listen(
+                source,
+                timeout=5,
+                phrase_time_limit=8
+            )
+
         print("Recognizing...")
-        command = recognizer.recognize_google(audio)
-        print(f"You: {command}")
-        return command.lower().strip()
+
+        # First try Hindi
+        try:
+            command = recognizer.recognize_google(
+                audio,
+                language="hi-IN"
+            )
+            print("You:", command)
+            return command.lower().strip()
+
+        except sr.UnknownValueError:
+            pass
+
+        # If Hindi recognition fails, try English
+        try:
+            command = recognizer.recognize_google(
+                audio,
+                language="en-IN"
+            )
+            print("You:", command)
+            return command.lower().strip()
+
+        except sr.UnknownValueError:
+            print("Could not understand your voice.")
+            return ""
+
     except sr.WaitTimeoutError:
         print("No speech detected.")
-    except sr.UnknownValueError:
-        print("Voice was not understood.")
+        return ""
+
     except sr.RequestError:
-        speak("Speech recognition service is unavailable. Check your internet connection.")
+        print("Speech recognition service unavailable.")
+        return ""
+
     except OSError:
-        speak("Microphone error. Please check microphone access and connection.")
+        print("Microphone error. Check your microphone.")
+        return ""
+
     except Exception as error:
-        print(f"Listening error: {error}")
-    return ""
-
-
-def stop_speech_engine() -> None:
-    try:
-        engine.stop()
-    except Exception:
-        pass
+        print("Voice error:", error)
+        return ""

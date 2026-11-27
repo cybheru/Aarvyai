@@ -1,5 +1,12 @@
 # Changelog
 
+## 6.0.0 — 2026-11-27
+
+- Added common Hindi and Hinglish voice commands written in Roman letters.
+- Added command examples such as “YouTube kholo”, “Time kya hua hai”, and “Calculator open karo”.
+- Kept existing English command patterns and V5 PC and web features.
+- Updated setup, supported commands, language limitations and version documentation.
+
 ## 5.0.0 — 2026-11-21
 
 - Restructured Aarvyai into voice, command, Windows-control and web modules.
